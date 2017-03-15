@@ -1,0 +1,14 @@
+.items-container {
+  margin-top: 10%;
+  font-family: Arial;
+  font-weight: 100;
+  text-align: center;
+}
+
+.card-title {
+  margin-top: 4%;;
+}
+
+.col-xs-4 {
+  margin-top: 3%;
+}
