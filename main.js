@@ -115,8 +115,10 @@ itemContainer.addEventListener('click', function (event){
 })
 
 function findItem (itemId) {
-  for (var i = 0; i < length.items; i++) {
+  for (var i = 0; i < items.length; i++) {
     var item = items[i]
+    if(itemId === item.id){
+      console.log('match')
+    }
   }
-  console.log(itemId)
 }
