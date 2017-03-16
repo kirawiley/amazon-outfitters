@@ -61,13 +61,14 @@ var items = [
 
 var imageHeight = 420
 
+var itemContainer = document.querySelector('div')
+var itemRow = document.getElementsByClassName('row')
+
 function renderItems(item) {
-  var itemContainer = document.createElement('div')
-    itemContainer.classList.add('container')
-    itemContainer.classList.add('items-container')
 
   var itemCard = document.createElement('div')
     itemCard.classList.add('card')
+    itemCard.setAttribute('data-id', item.id)
 
   var itemColumn = document.createElement('div')
     itemColumn.classList.add('col-xs-4')
@@ -76,6 +77,7 @@ function renderItems(item) {
     itemImage.classList.add('card-img-top')
     itemImage.setAttribute('src', item.image)
     itemImage.setAttribute('height', imageHeight)
+    itemImage.setAttribute('data-id', item.id)
 
   var cardBlock = document.createElement('div')
     cardBlock.classList.add('card-block')
@@ -94,18 +96,19 @@ function renderItems(item) {
   cardBlock.appendChild(itemPrice)
   itemCard.appendChild(cardBlock)
   itemColumn.appendChild(itemCard)
-  itemRow.appendChild(itemColumn)
   itemContainer.appendChild(itemRow)
 
   return itemContainer
 }
 
-var itemRow = document.createElement('div')
-  itemRow.classList.add('row')
-
 items.forEach(function(item) {
   var itemContainer = renderItems(item)
   document.body.appendChild(itemContainer)
+  itemRow.appendChild(itemColumn)
 })
 
+
 //Item details view
+itemContainer.addEventListener('click', function (event){
+  event.target.
+})
