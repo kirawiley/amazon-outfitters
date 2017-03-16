@@ -109,6 +109,6 @@ items.forEach(function(item) {
 //Item details view
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
-  console.log('clicking')
+    console.log(event.target.getAttribute('data-id'))
   }
 })
