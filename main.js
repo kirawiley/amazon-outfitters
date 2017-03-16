@@ -109,6 +109,14 @@ items.forEach(function(item) {
 //Item details view
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
-    console.log(event.target.getAttribute('data-id'))
+    var itemId = event.target.getAttribute('data-id')
+    var item = findItem(itemId)
   }
 })
+
+function findItem (itemId) {
+  for (var i = 0; i < length.items; i++) {
+    var item = items[i]
+  }
+  console.log(itemId)
+}
