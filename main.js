@@ -61,10 +61,10 @@ var items = [
 
 var imageHeight = 420
 
-var itemContainer = document.querySelector('div')
-var itemRow = document.getElementsByClassName('row')
+var itemContainer = document.querySelector('.container')
+var itemRow = document.querySelector('.row')
 
-function renderItems(item) {
+function createItems(item) {
 
   var itemCard = document.createElement('div')
     itemCard.classList.add('card')
@@ -73,7 +73,7 @@ function renderItems(item) {
   var itemColumn = document.createElement('div')
     itemColumn.classList.add('col-xs-4')
 
-  itemImage = document.createElement('img')
+  var itemImage = document.createElement('img')
     itemImage.classList.add('card-img-top')
     itemImage.setAttribute('src', item.image)
     itemImage.setAttribute('height', imageHeight)
@@ -96,19 +96,19 @@ function renderItems(item) {
   cardBlock.appendChild(itemPrice)
   itemCard.appendChild(cardBlock)
   itemColumn.appendChild(itemCard)
-  itemContainer.appendChild(itemRow)
 
-  return itemContainer
+  return itemColumn
 }
 
 items.forEach(function(item) {
-  var itemContainer = renderItems(item)
-  document.body.appendChild(itemContainer)
-  itemRow.appendChild(itemColumn)
+  var $itemColumn = createItems(item)
+  itemRow.appendChild($itemColumn)
 })
 
 
 //Item details view
 itemContainer.addEventListener('click', function (event){
-  event.target.
+  if(event.target.tagName === 'IMG'){
+  console.log('clicking')
+  }
 })
