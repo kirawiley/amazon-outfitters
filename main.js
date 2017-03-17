@@ -110,6 +110,7 @@ items.forEach(function(item) {
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
     var itemId = event.target.getAttribute('data-id')
+    itemContainer.classList.add('invisible')
     var item = findItem(itemId)
   }
 })
@@ -117,8 +118,8 @@ itemContainer.addEventListener('click', function (event){
 function findItem (itemId) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i]
-    if(itemId === item.id){
-      console.log('match')
+      if(itemId === item.id.toString()){
+      console.log(item)
     }
   }
 }
