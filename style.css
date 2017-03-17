@@ -1,4 +1,4 @@
-.items-container {
+#list {
   margin-top: 10%;
   font-family: Arial;
   font-weight: 100;
@@ -15,4 +15,24 @@
 
 .col-xs-4 {
   margin-top: 3%;
+}
+
+.card-header {
+  text-align: center;
+  font-size: 200%;
+  font-family: Arial;
+  margin-top: 40%;
+}
+
+.card.details {
+  margin-top: 200%;
+  margin-left: 60%;
+}
+
+.card-text {
+  font-size: 150%;
+}
+
+.btn.btn-primary {
+  margin-top: 50%;
 }

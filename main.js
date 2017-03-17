@@ -106,11 +106,13 @@ items.forEach(function(item) {
 })
 
 
-//Item details view
+//Clicking correct item
+
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
     var itemId = event.target.getAttribute('data-id')
     itemContainer.classList.add('invisible')
+    detailContainer.classList.remove('invisible')
     var item = findItem(itemId)
   }
 })
@@ -119,7 +121,75 @@ function findItem (itemId) {
   for (var i = 0; i < items.length; i++) {
     var item = items[i]
       if(itemId === item.id.toString()){
-      console.log(item)
+      return item
     }
   }
+}
+
+//Details view
+
+/*     <div class="container" id="details">
+      <div class="row" id="details-row">
+        <div class="col-xs-6">
+          <div class="card">
+            <div class="card-header">
+              Item Name
+            </div>
+            <div class="card-block">
+              <img class="card-img-top" src="https://img1.fpassets.com/is/image/FreePeople/41580994_010_a?$browse-lt$" alt="Card image cap">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="card details">
+              <div class="card-block">
+                <p class="card-text">Item Details</p>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Choose Size
+                  </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">SMALL</a>
+                      <a class="dropdown-item" href="#">MEDIUM</a>
+                      <a class="dropdown-item" href="#">LARGE</a>
+                    </div>
+                  </div>
+                <a href="#" class="btn btn-primary">Add to Cart</a>
+              </div>
+            </div>
+        </div>
+      </div> */
+
+var detailContainer = document.getElementById('details')
+var detailRow = document.getElementById('details-row')
+
+function createDetails (item){
+  var detailColumn = document.createElement('div')
+    itemColumn.classList.add('col-xs-6')
+
+  var card = document.createElement('div')
+    detailCard.classList.add('card')
+
+  var cardHeader = document.createElement('h3')
+    detailHeader.classList.add('card-header')
+    detailHeader.textContent = item.name
+
+  var cardBlock = document.createElement('div')
+    cardBlock.classList.add('card-block')
+
+  var itemImage = document.createElement('img')
+    itemImage.classList.add('card-img-top')
+    itemImage.setAttribute('src', item.image)
+
+  cardBlock.appendChild(itemImage)
+  card.appendChild(cardHeader)
+  card.appendChild(cardBlock)
+  card.appendChild(itemImage)
+
+  return detailColumn
+}
+
+function renderDetails (item) {
+  var $detailColumn = createDetails(item)
+  detailRow.appendChild($detailColumn)
 }
