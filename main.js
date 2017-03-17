@@ -114,6 +114,7 @@ itemContainer.addEventListener('click', function (event){
     itemContainer.classList.add('invisible')
     detailContainer.classList.remove('invisible')
     var item = findItem(itemId)
+    renderDetails(item)
   }
 })
 
@@ -130,20 +131,20 @@ function findItem (itemId) {
 
 /*     <div class="container" id="details">
       <div class="row" id="details-row">
-        <div class="col-xs-6">
-          <div class="card">
+        <div class="col-xs-6 image-column">
+          <div class="card image-card">
             <div class="card-header">
               Item Name
             </div>
-            <div class="card-block">
+            <div class="card-block image-block">
               <img class="card-img-top" src="https://img1.fpassets.com/is/image/FreePeople/41580994_010_a?$browse-lt$" alt="Card image cap">
             </div>
           </div>
         </div>
-        <div class="col-xs-6 detail-column">
-          <div class="card details">
-              <div class="card-block">
-                <p class="card-text">Item Details</p>
+        <div class="col-xs-6 details-column">
+          <div class="card details-card">
+              <div class="card-block details-block">
+                <p class="card-text written-details">Item Details</p>
                 <p class="card-text item-price">Price</p>
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -165,35 +166,66 @@ function findItem (itemId) {
 var detailContainer = document.getElementById('details')
 var detailRow = document.getElementById('details-row')
 
-function createDetails (item){
+function createDetails (item) {
 
   var imageColumn = document.createElement('div')
     imageColumn.classList.add('col-xs-6')
+    imageColumn.classList.add('image-column')
 
-  var card = document.createElement('div')
-    card.classList.add('card')
+  var imageCard = document.createElement('div')
+    imageCard.classList.add('card')
+    imageCard.classList.add('image')
 
   var cardHeader = document.createElement('h3')
     cardHeader.classList.add('card-header')
     cardHeader.textContent = item.name
 
-  var cardBlock = document.createElement('div')
-    cardBlock.classList.add('card-block')
+  var imageCardBlock = document.createElement('div')
+    imageCardBlock.classList.add('card-block')
+    imageCardBlock.classList.add('image-block')
 
   var itemImage = document.createElement('img')
     itemImage.classList.add('card-img-top')
     itemImage.setAttribute('src', item.image)
 
+  var detailsColumn = document.createElement('div')
+    detailsColumn.classList.add('col-xs-6')
+    detailsColumn.classList.add('details-column')
 
-  cardBlock.appendChild(itemImage)
-  card.appendChild(cardHeader)
-  card.appendChild(cardBlock)
-  card.appendChild(itemImage)
+  var detailsCard = document.createElement('div')
+    detailsCard.classList.add('card')
+    detailsCard.classList.add('details-card')
+
+  var detailsCardBlock = document.createElement('div')
+    detailsCardBlock.classList.add('card-block')
+    detailsCardBlock.classList.add('details-block')
+
+  var detailsWritten = document.createElement('p')
+    detailsWritten.classList.add('card-text')
+    detailsWritten.classList.add('written-details')
+    detailsWritten.textContent = 'Details go here!'
+
+  var price = document.createElement('p')
+    price.classList.add('card-text')
+    price.classList.add('item-price')
+    price.textContent = (item.price)
+
+
+  imageCardBlock.appendChild(itemImage)
+  imageCard.appendChild(cardHeader)
+  imageCard.appendChild(imageCardBlock)
+  imageColumn.appendChild(imageCard)
+
+  detailsCardBlock.appendChild(detailsWritten)
+  detailsCardBlock.appendChild(price)
+  detailsCard.appendChild(detailsCardBlock)
+  detailsColumn.appendChild(detailsCard)
 
   return imageColumn
 }
 
+
 function renderDetails (item) {
-  var $detailColumn = createDetails(item)
-  detailRow.appendChild($detailColumn)
+  var $imageColumn = createDetails(item)
+  detailRow.appendChild($imageColumn)
 }
