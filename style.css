@@ -33,6 +33,10 @@
   font-size: 150%;
 }
 
+.card-text.item-price {
+  font-size: 100%;
+}
+
 .btn.btn-primary {
   margin-top: 50%;
 }

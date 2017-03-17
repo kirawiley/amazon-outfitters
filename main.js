@@ -140,10 +140,11 @@ function findItem (itemId) {
             </div>
           </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-6 detail-column">
           <div class="card details">
               <div class="card-block">
                 <p class="card-text">Item Details</p>
+                <p class="card-text item-price">Price</p>
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Choose Size
@@ -160,19 +161,21 @@ function findItem (itemId) {
         </div>
       </div> */
 
+
 var detailContainer = document.getElementById('details')
 var detailRow = document.getElementById('details-row')
 
 function createDetails (item){
-  var detailColumn = document.createElement('div')
-    itemColumn.classList.add('col-xs-6')
+
+  var imageColumn = document.createElement('div')
+    imageColumn.classList.add('col-xs-6')
 
   var card = document.createElement('div')
-    detailCard.classList.add('card')
+    card.classList.add('card')
 
   var cardHeader = document.createElement('h3')
-    detailHeader.classList.add('card-header')
-    detailHeader.textContent = item.name
+    cardHeader.classList.add('card-header')
+    cardHeader.textContent = item.name
 
   var cardBlock = document.createElement('div')
     cardBlock.classList.add('card-block')
@@ -181,12 +184,13 @@ function createDetails (item){
     itemImage.classList.add('card-img-top')
     itemImage.setAttribute('src', item.image)
 
+
   cardBlock.appendChild(itemImage)
   card.appendChild(cardHeader)
   card.appendChild(cardBlock)
   card.appendChild(itemImage)
 
-  return detailColumn
+  return imageColumn
 }
 
 function renderDetails (item) {
