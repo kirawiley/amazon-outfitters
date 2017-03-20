@@ -4,54 +4,63 @@ var items = [
     name: 'Margot Two-Piece Set',
     price: '$148.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/41935917_067_a?$browse-lt$',
+    description: 'Easy and effortless, this American made set features a cropped top and flowy tiered skirt.',
     id: 0
   },
   {
     name: 'Bird of Paradise Jacket',
     price: '$600.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/40183220_001_a?$browse-lt$',
+    description: 'Stunning cropped jacket with embellishments all over. Multi-colored sequins, edgy studs and beautiful beading make this an ultra cool statement piece.',
     id: 1
   },
   {
     name: 'Meshed Up Tee',
     price: '$50.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/41550351_001_a?$browse-lt$',
+    description: 'Cool mesh tee featuring bold floral embroidery throughout.',
     id: 2
   },
   {
-    name: 'High-Rise Cropped Skinny',
+    name: '501 Skinny',
     price: '$128.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/40504748_092_a?$browse-lt$',
+    description: 'The iconic Levi’s 501 has been reimagined with a slimmer skinny leg that has been cropped to graze just above the ankle.',
     id: 3
   },
   {
     name: 'First Date Dress',
     price: '$70.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/40072043_062_a?$browse-lt$',
+    description: 'Long sleeve dress with a soft and comfy fabrication and an effortless trapeze shape.',
     id: 4
   },
   {
     name: 'Mustard Cardi',
     price: '$88.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/39440201_071_a?$browse-lt$',
+    description: 'Marled chunky cardigan sweater featuring front slip pockets and contrast detailing. ',
     id: 5
   },
   {
     name: 'Prima Ballerina Top',
     price: '$58.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/31599962_049_a?$browse-lt$',
+    description: 'Stretchy ribbed cold shoulder top with mock turtleneck.',
     id: 6
   },
   {
     name: 'Silver Linings Leather Jacket',
     price: '$400.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/42146589_001_a?$browse-lt$',
+    description: 'Classic moto style leather jacket featuring beautiful rose embroidery and stud details on the back and sleeve cuffs.',
     id: 7
   },
   {
     name: 'Bandit Denim Shorts',
     price: '$68.00',
     image: 'https://img1.fpassets.com/is/image/FreePeople/41580994_010_a?$browse-lt$',
+    description: 'Western-inspired denim shorts featuring a ruffled waistband and metal concho accents.',
     id: 8
   }
 ]
@@ -166,7 +175,7 @@ function findItem (itemId) {
 var detailContainer = document.getElementById('details')
 var detailRow = document.getElementById('details-row')
 
-function createDetails (item) {
+function createImageDetails (item) {
 
   var imageColumn = document.createElement('div')
     imageColumn.classList.add('col-xs-6')
@@ -188,44 +197,40 @@ function createDetails (item) {
     itemImage.classList.add('card-img-top')
     itemImage.setAttribute('src', item.image)
 
-  var detailsColumn = document.createElement('div')
-    detailsColumn.classList.add('col-xs-6')
-    detailsColumn.classList.add('details-column')
-
-  var detailsCard = document.createElement('div')
-    detailsCard.classList.add('card')
-    detailsCard.classList.add('details-card')
-
-  var detailsCardBlock = document.createElement('div')
-    detailsCardBlock.classList.add('card-block')
-    detailsCardBlock.classList.add('details-block')
-
-  var detailsWritten = document.createElement('p')
-    detailsWritten.classList.add('card-text')
-    detailsWritten.classList.add('written-details')
-    detailsWritten.textContent = 'Details go here!'
-
-  var price = document.createElement('p')
-    price.classList.add('card-text')
-    price.classList.add('item-price')
-    price.textContent = (item.price)
-
 
   imageCardBlock.appendChild(itemImage)
   imageCard.appendChild(cardHeader)
   imageCard.appendChild(imageCardBlock)
   imageColumn.appendChild(imageCard)
 
-  detailsCardBlock.appendChild(detailsWritten)
-  detailsCardBlock.appendChild(price)
-  detailsCard.appendChild(detailsCardBlock)
-  detailsColumn.appendChild(detailsCard)
-
   return imageColumn
 }
 
+function createInfoDetails (item) {
+
+  var detailsColumn = document.createElement('div')
+    detailsColumn.classList.add('col-xs-6')
+    detailsColumn.classList.add('details-column')
+
+  var detailsWritten = document.createElement('p')
+    detailsWritten.classList.add('card-text')
+    detailsWritten.classList.add('written-details')
+    detailsWritten.textContent = item.description
+
+  var price = document.createElement('p')
+    price.classList.add('card-text')
+    price.classList.add('item-price')
+    price.textContent = item.price
+
+  detailsColumn.appendChild(detailsWritten)
+  detailsColumn.appendChild(price)
+
+  return detailsColumn
+}
 
 function renderDetails (item) {
-  var $imageColumn = createDetails(item)
+  var $imageColumn = createImageDetails(item)
+  var $detailsColumn = createInfoDetails(item)
   detailRow.appendChild($imageColumn)
+  detailRow.appendChild($detailsColumn)
 }
