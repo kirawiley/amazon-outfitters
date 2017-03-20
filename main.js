@@ -245,9 +245,10 @@ function createInfoDetails (item) {
   detailsColumn.appendChild(detailsWritten)
 
   var listDetails = document.createElement('ul')
-  item.itemInfo.forEach(function (item){
+    listDetails.setAttribute('id', 'bullet-points')
+  item.itemInfo.forEach(function (descriptor){
     var listItem = document.createElement('li')
-    listItem.textContent = item.itemInfo
+    listItem.textContent = descriptor
     listDetails.appendChild(listItem)
     detailsColumn.appendChild(listDetails)
   })

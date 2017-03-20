@@ -52,11 +52,15 @@
 }
 
 #larger-image {
-  margin-left: -13%;
+  margin: auto;
 }
 
 #cart-button {
   margin-left: 40%;
-  font-family: "Inconsolata";
   font-weight: 700;
+  font-family: "Inconsolata";
+}
+
+#bullet-points {
+  font-family: "Inconsolata";
 }
