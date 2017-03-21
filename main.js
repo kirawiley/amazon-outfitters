@@ -124,12 +124,12 @@ var items = [
 ]
 
 
-//Creating DOM elements
+//List view elements
 
 var imageHeight = 420
 
-var itemContainer = document.querySelector('.container')
-var itemRow = document.querySelector('.row')
+var itemContainer = document.getElementById('list')
+var itemRow = document.getElementById('list-row')
 
 function createItems(item) {
 
@@ -174,6 +174,7 @@ items.forEach(function(item) {
 })
 
 
+
 //Clicking correct item
 
 itemContainer.addEventListener('click', function (event){
@@ -195,7 +196,7 @@ function findItem (itemId) {
   }
 }
 
-//Details view
+//Details view elements
 
 var detailContainer = document.getElementById('details')
 var detailRow = document.getElementById('details-row')
@@ -264,6 +265,14 @@ function createInfoDetails (item) {
     cartButton.setAttribute('id', 'cart-button')
     cartButton.textContent = 'Add to Cart'
 
+  cartButton.addEventListener('click', function (event) {
+    var quantity = 0
+    if(event.target) {
+      cart.push(item)
+      quantity += 1
+    }
+  })
+
   detailsColumn.appendChild(price)
   detailsColumn.appendChild(cartButton)
 
@@ -276,3 +285,14 @@ function renderDetails (item) {
   detailRow.appendChild($imageColumn)
   detailRow.appendChild($detailsColumn)
 }
+
+//Cart stuff
+
+var cart = []
+
+var cartIcon = document.getElementById('cart-icon')
+var cartQuantity = document.createElement('a')
+  cartQuantity.setAttribute('id', 'quantity-counter')
+  cartQuantity.textContent = 'x' + cart.length
+
+cartIcon.appendChild(cartQuantity)

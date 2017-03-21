@@ -1,5 +1,15 @@
+#cart-icon {
+  margin-left: 100%;
+  margin-top: 5%;
+}
+
+#quantity-counter {
+  font-family: "Inconsolata";
+  font-size: 20px;
+}
+
 #list {
-  margin-top: 10%;
+  margin-top: 4%;
   font-family: "Inconsolata";
   text-align: center;
 }
