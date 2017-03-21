@@ -1,14 +1,66 @@
-.items-container {
+#list {
   margin-top: 10%;
-  font-family: Arial;
-  font-weight: 100;
+  font-family: "Inconsolata";
   text-align: center;
 }
 
 .card-title {
-  margin-top: 4%;;
+  margin-top: 4%;
+}
+
+.card {
+  border-style: none;
 }
 
 .col-xs-4 {
   margin-top: 3%;
+}
+
+.card-header {
+  text-align: center;
+  font-size: 200%;
+  font-family: "Inconsolata";
+  margin-top: 40%;
+}
+
+#list-price {
+  font-size: 120%;
+}
+
+.card.details {
+  margin-top: 200%;
+  margin-left: 60%;
+}
+
+.card-text {
+  font-size: 150%;
+  font-family: "Inconsolata";
+}
+
+.card-text.item-price {
+  font-size: 120%;
+  margin-top: 20%;
+  margin-left: 45%;
+}
+
+.invisible {
+  display: none;
+}
+
+#details-column {
+ margin-top: 30%;
+}
+
+#larger-image {
+  margin: auto;
+}
+
+#cart-button {
+  margin-left: 40%;
+  font-weight: 700;
+  font-family: "Inconsolata";
+}
+
+#bullet-points {
+  font-family: "Inconsolata";
 }
