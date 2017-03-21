@@ -1,6 +1,11 @@
+#logo {
+  margin-left: 22%;
+  margin-top: 2%;
+}
+
 #cart-icon {
   margin-left: 100%;
-  margin-top: 5%;
+  white-space: nowrap;
 }
 
 #quantity-counter {
@@ -28,7 +33,7 @@
 
 .card-header {
   text-align: center;
-  font-size: 200%;
+  font-size: 150%;
   font-family: "Inconsolata";
   margin-top: 40%;
 }
@@ -43,12 +48,12 @@
 }
 
 .card-text {
-  font-size: 150%;
+  font-size: 130%;
   font-family: "Inconsolata";
 }
 
 .card-text.item-price {
-  font-size: 120%;
+  font-size: 110%;
   margin-top: 20%;
   margin-left: 45%;
 }

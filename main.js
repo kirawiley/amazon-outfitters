@@ -124,12 +124,24 @@ var items = [
 ]
 
 
-//List view elements
+//Global Elements
 
 var imageHeight = 420
 
 var itemContainer = document.getElementById('list')
 var itemRow = document.getElementById('list-row')
+
+var detailContainer = document.getElementById('details')
+var detailRow = document.getElementById('details-row')
+
+var cart = []
+var quantityCounter = document.getElementById('quantity-counter')
+var cartIcon = document.getElementById('cart-icon')
+
+var cartContainer = document.getElementById('cart')
+
+
+// createItems + the .forEach create the list view
 
 function createItems(item) {
 
@@ -174,8 +186,7 @@ items.forEach(function(item) {
 })
 
 
-
-//Clicking correct item
+//findItem + the event listener find the item that has been selected
 
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
@@ -196,10 +207,8 @@ function findItem (itemId) {
   }
 }
 
-//Details view elements
 
-var detailContainer = document.getElementById('details')
-var detailRow = document.getElementById('details-row')
+//createImageDetails and createInfoDetails create the 2 columns in detailed view
 
 function createImageDetails (item) {
 
@@ -266,12 +275,13 @@ function createInfoDetails (item) {
     cartButton.textContent = 'Add to Cart'
 
   cartButton.addEventListener('click', function (event) {
-    var quantity = 0
-    if(event.target) {
-      cart.push(item)
-      quantity += 1
-    }
+    addToCart()
   })
+
+  function addToCart (item) {
+    cart.push(item)
+    quantityCounter.textContent = 'x' + cart.length
+  }
 
   detailsColumn.appendChild(price)
   detailsColumn.appendChild(cartButton)
@@ -286,13 +296,12 @@ function renderDetails (item) {
   detailRow.appendChild($detailsColumn)
 }
 
+
+
 //Cart stuff
 
-var cart = []
-
-var cartIcon = document.getElementById('cart-icon')
-var cartQuantity = document.createElement('a')
-  cartQuantity.setAttribute('id', 'quantity-counter')
-  cartQuantity.textContent = 'x' + cart.length
-
-cartIcon.appendChild(cartQuantity)
+cartIcon.addEventListener('click', function (event) {
+  itemContainer.classList.add('invisible')
+  detailContainer.classList.add('invisible')
+  cartContainer.classList.remove('invisible')
+})
