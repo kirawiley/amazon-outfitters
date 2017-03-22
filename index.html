@@ -6,11 +6,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
     integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700"/>
     <link rel="stylesheet" href="style.css"/>
   </head>
 
   <body>
+
+    <div class="row" id="header-row">
+      <div class="container" id="header">
+          <img id="logo" src="amazon-outfitters-logo.png" alt="Amazon Outfitters"/>
+              <i id="cart-icon" class="fa fa-2x fa-shopping-cart" aria-hidden="true">
+                <span id="quantity-counter">x0</span>
+              </i>
+      </div>
+    </div>
 
     <div class="container" id="list">
       <div class="row" id="list-row">
@@ -18,9 +28,13 @@
     </div>
 
     <div class="container invisible" id="details">
-      <div class="row" id="details-row">
+    <div class="row" id="details-row">
       </div>
     </div>
+
+    <div class="container invisible" id="cart">
+    </div>
+
 
     <script src="main.js"></script>
   </body>
