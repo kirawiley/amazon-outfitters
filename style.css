@@ -102,3 +102,13 @@
   font-family: "Inconsolata";
   font-weight: 700;
 }
+
+#go-back {
+  font-family: "Inconsolata";
+  text-align: center;
+  margin-top: 30%;
+}
+
+#go-back:hover {
+  color: #3bc6d6;
+}

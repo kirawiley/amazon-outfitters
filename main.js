@@ -279,14 +279,33 @@ function createInfoDetails(item) {
     addToCart(item)
   })
 
+  var goBack = document.createElement('p')
+  goBack.setAttribute('id', 'go-back')
+  goBack.textContent = '<< Continue Shopping'
+
+  goBack.addEventListener('click', function (event) {
+    detailContainer.classList.add('invisible')
+    itemContainer.classList.remove('invisible')
+    
+  })
+
   detailsColumn.appendChild(price)
   detailsColumn.appendChild(cartButton)
+  detailsColumn.appendChild(goBack)
 
   return detailsColumn
 }
 
 function addToCart(item) {
-  cart.push(item)
+ /*if (cart.find === undefined) {
+  var cartItems = [
+    {
+      name: item.name,
+      price: item.price,
+      id: item.id,
+      quantity: 1
+    }*/
+    cart.push(item)
   quantityCounter.textContent = 'x' + cart.length
 }
 
