@@ -70,6 +70,10 @@
   margin: auto;
 }
 
+#cart {
+  font-family: "Inconsolata";
+}
+
 #cart-button {
   margin-left: 40%;
   font-weight: 700;
@@ -78,4 +82,23 @@
 
 #bullet-points {
   font-family: "Inconsolata";
+}
+
+#cart-item-row {
+  margin-top: 10%;
+}
+
+#item-added-picture {
+  width: 55%;
+}
+
+#total-price {
+  margin-left: 88%;
+  margin-top: 20%;
+}
+
+#checkout-button {
+  margin-left: 82%;
+  font-family: "Inconsolata";
+  font-weight: 700;
 }

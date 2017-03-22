@@ -135,6 +135,7 @@ var detailContainer = document.getElementById('details')
 var detailRow = document.getElementById('details-row')
 
 var cart = []
+
 var quantityCounter = document.getElementById('quantity-counter')
 var cartIcon = document.getElementById('cart-icon')
 
@@ -163,13 +164,12 @@ function createItems(item) {
 
   var itemName = document.createElement('h5')
     itemName.classList.add('card-title')
+    itemName.textContent = item.name
 
   var itemPrice = document.createElement('p')
     itemPrice.classList.add('card-text')
     itemPrice.setAttribute('id', 'list-price')
-
-  itemPrice.textContent = item.price
-  itemName.textContent = item.name
+    itemPrice.textContent = item.price
 
   cardBlock.appendChild(itemImage)
   cardBlock.appendChild(itemName)
@@ -206,7 +206,6 @@ function findItem (itemId) {
     }
   }
 }
-
 
 //createImageDetails and createInfoDetails create the 2 columns in detailed view
 
@@ -258,7 +257,8 @@ function createInfoDetails (item) {
     listDetails.setAttribute('id', 'bullet-points')
   item.itemInfo.forEach(function (descriptor){
     var listItem = document.createElement('li')
-    listItem.textContent = descriptor
+      listItem.textContent = descriptor
+
     listDetails.appendChild(listItem)
     detailsColumn.appendChild(listDetails)
   })
@@ -300,8 +300,73 @@ function renderDetails (item) {
 
 //Cart stuff
 
+/*<div class="row" id="cart-item-row">
+  <div class="col-3">
+    <img id="item-added-picture" src="https://img1.fpassets.com/is/image/FreePeople/41935917_067_a?$browse-lt$" alt="Item Added to Cart"/>
+  </div>
+  <div class="col-7">
+    <h4>Name of Item(s)</h4>
+    <p>x Quantity</p>
+  </div>
+  <div class="col-2">
+    <p>Price of Item</p>
+  </div>
+</div>
+<div class="row" id="total-row">
+  <div class="col-12">
+    <p id="total-price">Total</p>
+    <button type="button" class="btn btn-secondary" id="checkout-button">Proceed to Checkout</button>
+  </div>
+</div>*/
+
 cartIcon.addEventListener('click', function (event) {
   itemContainer.classList.add('invisible')
   detailContainer.classList.add('invisible')
   cartContainer.classList.remove('invisible')
+  renderCart()
 })
+
+function createCart(item) {
+  var cartRow = document.createElement('div')
+    cartRow.classList.add('row')
+    cartRow.setAttribute('id', 'cart-item-row')
+
+  var cartImageColumn = document.createElement('div')
+    cartImageColumn.classList.add('col-3')
+
+  var cartImage = document.createElement('img')
+    cartImage.setAttribute('id', 'item-added-picture')
+    //cartImage.setAttribute('src', item.image)
+
+  var cartNameColumn = document.createElement('div')
+    cartNameColumn.classList.add('col-7')
+
+  var cartItemName = document.createElement('h3')
+    //cartItemName.textContent = item.name
+
+  var cartItemQuantity = document.createElement('p')
+    cartItemQuantity.textContent = 'x' + cart.length
+
+  var cartPriceColumn = document.createElement('div')
+    cartPriceColumn.classList.add('col-2')
+
+  var cartItemPrice = document.createElement('p')
+    //cartItemPrice.textContent = item.price
+
+  cartImageColumn.appendChild(cartImage)
+  cartNameColumn.appendChild(cartItemName)
+  cartNameColumn.appendChild(cartItemQuantity)
+  cartPriceColumn.appendChild(cartItemPrice)
+  cartRow.appendChild(cartImageColumn)
+  cartRow.appendChild(cartNameColumn)
+  cartRow.appendChild(cartPriceColumn)
+
+  return cartRow
+}
+
+function renderCart () {
+  cart.forEach(function (item) {
+    var $cartRow = createCart(item)
+    cartContainer.appendChild($cartRow)
+  })
+}
