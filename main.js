@@ -155,6 +155,7 @@ function createItems(item) {
 
   var itemImage = document.createElement('img')
   itemImage.classList.add('card-img-top')
+  itemImage.setAttribute('id', 'list-image')
   itemImage.setAttribute('src', item.image)
   itemImage.setAttribute('height', imageHeight)
   itemImage.setAttribute('data-id', item.id)
@@ -286,7 +287,7 @@ function createInfoDetails(item) {
   goBack.addEventListener('click', function (event) {
     detailContainer.classList.add('invisible')
     itemContainer.classList.remove('invisible')
-    
+
   })
 
   detailsColumn.appendChild(price)
@@ -312,6 +313,7 @@ function addToCart(item) {
 function renderDetails(item) {
   var $imageColumn = createImageDetails(item)
   var $detailsColumn = createInfoDetails(item)
+  detailRow.innerHTML = ''
   detailRow.appendChild($imageColumn)
   detailRow.appendChild($detailsColumn)
 }
