@@ -147,29 +147,29 @@ var cartContainer = document.getElementById('cart')
 function createItems(item) {
 
   var itemCard = document.createElement('div')
-    itemCard.classList.add('card')
-    itemCard.setAttribute('data-id', item.id)
+  itemCard.classList.add('card')
+  itemCard.setAttribute('data-id', item.id)
 
   var itemColumn = document.createElement('div')
-    itemColumn.classList.add('col-xs-4')
+  itemColumn.classList.add('col-xs-4')
 
   var itemImage = document.createElement('img')
-    itemImage.classList.add('card-img-top')
-    itemImage.setAttribute('src', item.image)
-    itemImage.setAttribute('height', imageHeight)
-    itemImage.setAttribute('data-id', item.id)
+  itemImage.classList.add('card-img-top')
+  itemImage.setAttribute('src', item.image)
+  itemImage.setAttribute('height', imageHeight)
+  itemImage.setAttribute('data-id', item.id)
 
   var cardBlock = document.createElement('div')
-    cardBlock.classList.add('card-block')
+  cardBlock.classList.add('card-block')
 
   var itemName = document.createElement('h5')
-    itemName.classList.add('card-title')
-    itemName.textContent = item.name
+  itemName.classList.add('card-title')
+  itemName.textContent = item.name
 
   var itemPrice = document.createElement('p')
-    itemPrice.classList.add('card-text')
-    itemPrice.setAttribute('id', 'list-price')
-    itemPrice.textContent = '$' + item.price + '.00'
+  itemPrice.classList.add('card-text')
+  itemPrice.setAttribute('id', 'list-price')
+  itemPrice.textContent = '$' + item.price + '.00'
 
   cardBlock.appendChild(itemImage)
   cardBlock.appendChild(itemName)
@@ -212,25 +212,25 @@ function findItem (itemId) {
 function createImageDetails(item) {
 
   var imageColumn = document.createElement('div')
-    imageColumn.classList.add('col-6')
+  imageColumn.classList.add('col-6')
 
 
   var imageCard = document.createElement('div')
-    imageCard.classList.add('card')
-    imageCard.classList.add('image')
+  imageCard.classList.add('card')
+  imageCard.classList.add('image')
 
   var cardHeader = document.createElement('h3')
-    cardHeader.classList.add('card-header')
-    cardHeader.textContent = item.name
+  cardHeader.classList.add('card-header')
+  cardHeader.textContent = item.name
 
   var imageCardBlock = document.createElement('div')
-    imageCardBlock.classList.add('card-block')
-    imageCardBlock.setAttribute('id', 'image-block')
+  imageCardBlock.classList.add('card-block')
+  imageCardBlock.setAttribute('id', 'image-block')
 
   var itemImage = document.createElement('img')
-    itemImage.classList.add('card-img-top')
-    itemImage.setAttribute('id', 'larger-image')
-    itemImage.setAttribute('src', item.image)
+  itemImage.classList.add('card-img-top')
+  itemImage.setAttribute('id', 'larger-image')
+  itemImage.setAttribute('src', item.image)
 
 
   imageCardBlock.appendChild(itemImage)
@@ -244,35 +244,36 @@ function createImageDetails(item) {
 function createInfoDetails(item) {
 
   var detailsColumn = document.createElement('div')
-    detailsColumn.classList.add('col-6')
-    detailsColumn.setAttribute('id', 'details-column')
+  detailsColumn.classList.add('col-6')
+  detailsColumn.setAttribute('id', 'details-column')
 
   var detailsWritten = document.createElement('p')
-    detailsWritten.classList.add('card-text')
-    detailsWritten.textContent = item.description
+  detailsWritten.classList.add('card-text')
+  detailsWritten.textContent = item.description
 
   detailsColumn.appendChild(detailsWritten)
 
   var listDetails = document.createElement('ul')
-    listDetails.setAttribute('id', 'bullet-points')
+  listDetails.setAttribute('id', 'bullet-points')
+
   item.itemInfo.forEach(function (descriptor){
     var listItem = document.createElement('li')
-      listItem.textContent = descriptor
+    listItem.textContent = descriptor
 
     listDetails.appendChild(listItem)
     detailsColumn.appendChild(listDetails)
   })
 
   var price = document.createElement('p')
-    price.classList.add('card-text')
-    price.classList.add('item-price')
-    price.textContent = '$' + item.price + '.00'
+  price.classList.add('card-text')
+  price.classList.add('item-price')
+  price.textContent = '$' + item.price + '.00'
 
   var cartButton = document.createElement('a')
-    cartButton.classList.add('btn')
-    cartButton.classList.add('btn-secondary')
-    cartButton.setAttribute('id', 'cart-button')
-    cartButton.textContent = 'Add to Cart'
+  cartButton.classList.add('btn')
+  cartButton.classList.add('btn-secondary')
+  cartButton.setAttribute('id', 'cart-button')
+  cartButton.textContent = 'Add to Cart'
 
   cartButton.addEventListener('click', function (event) {
     addToCart(item)
@@ -309,30 +310,30 @@ cartIcon.addEventListener('click', function (event) {
 
 function createCartList(item) {
   var cartRow = document.createElement('div')
-    cartRow.classList.add('row')
-    cartRow.setAttribute('id', 'cart-item-row')
+  cartRow.classList.add('row')
+  cartRow.setAttribute('id', 'cart-item-row')
 
   var cartImageColumn = document.createElement('div')
-    cartImageColumn.classList.add('col-3')
+  cartImageColumn.classList.add('col-3')
 
   var cartImage = document.createElement('img')
-    cartImage.setAttribute('id', 'item-added-picture')
-    cartImage.setAttribute('src', item.image)
+  cartImage.setAttribute('id', 'item-added-picture')
+  cartImage.setAttribute('src', item.image)
 
   var cartNameColumn = document.createElement('div')
-    cartNameColumn.classList.add('col-7')
+  cartNameColumn.classList.add('col-7')
 
   var cartItemName = document.createElement('h3')
-    cartItemName.textContent = item.name
+  cartItemName.textContent = item.name
 
   var cartItemQuantity = document.createElement('p')
-    cartItemQuantity.textContent = 'x' + cart.length
+  cartItemQuantity.textContent = 'x' + cart.length
 
   var cartPriceColumn = document.createElement('div')
-    cartPriceColumn.classList.add('col-2')
+  cartPriceColumn.classList.add('col-2')
 
   var cartItemPrice = document.createElement('p')
-    cartItemPrice.textContent = '$' + item.price + '.00'
+  cartItemPrice.textContent = '$' + item.price + '.00'
 
   cartImageColumn.appendChild(cartImage)
   cartNameColumn.appendChild(cartItemName)
@@ -345,31 +346,24 @@ function createCartList(item) {
   return cartRow
 }
 
-/*<div class="row" id="total-row">
-  <div class="col-12">
-    <p id="total-price">Total</p>
-    <button type="button" class="btn btn-secondary" id="checkout-button">Proceed to Checkout</button>
-  </div>
-</div>*/
-
 function createTotal(item) {
   var totalRow = document.createElement('div')
-    totalRow.classList.add('row')
-    totalRow.setAttribute('id', 'total-row')
+  totalRow.classList.add('row')
+  totalRow.setAttribute('id', 'total-row')
 
   var totalColumn = document.createElement('div')
-    totalColumn.classList.add('col-12')
+  totalColumn.classList.add('col-12')
 
   var totalPrice = document.createElement('p')
-    totalPrice.setAttribute('id', 'total-price')
-    totalPrice.textContent = 'Total:' + ' ' + '$' + getTotalPrice(cart) + '.00'
+  totalPrice.setAttribute('id', 'total-price')
+  totalPrice.textContent = 'Total:' + ' ' + '$' + getTotalPrice(cart) + '.00'
 
   var checkoutButton = document.createElement('button')
-    checkoutButton.classList.add('btn')
-    checkoutButton.classList.add('btn-secondary')
-    checkoutButton.setAttribute('type', 'button')
-    checkoutButton.setAttribute('id', 'checkout-button')
-    checkoutButton.textContent = 'Proceed to Checkout'
+  checkoutButton.classList.add('btn')
+  checkoutButton.classList.add('btn-secondary')
+  checkoutButton.setAttribute('type', 'button')
+  checkoutButton.setAttribute('id', 'checkout-button')
+  checkoutButton.textContent = 'Proceed to Checkout'
 
   totalColumn.appendChild(totalPrice)
   totalColumn.appendChild(checkoutButton)
