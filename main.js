@@ -2,7 +2,7 @@
 var items = [
   {
     name: 'Margot Two-Piece Set',
-    price: '$148.00',
+    price: 148.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/41935917_067_a?$browse-lt$',
     description: 'Easy and effortless, this American made set features a cropped top and flowy tiered skirt.',
     id: 0,
@@ -17,7 +17,7 @@ var items = [
   },
   {
     name: 'Bird of Paradise Jacket',
-    price: '$600.00',
+    price: 600.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/40183220_001_a?$browse-lt$',
     description: 'Stunning cropped jacket with embellishments all over. Multi-colored sequins, edgy studs and beautiful beading make this an ultra cool statement piece.',
     id: 1,
@@ -30,7 +30,7 @@ var items = [
   },
   {
     name: 'Meshed Up Tee',
-    price: '$50.00',
+    price: 50.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/41550351_001_a?$browse-lt$',
     description: 'Cool mesh tee featuring bold floral embroidery throughout.',
     id: 2,
@@ -44,7 +44,7 @@ var items = [
   },
   {
     name: '501 Skinny',
-    price: '$128.00',
+    price: 128.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/40504748_092_a?$browse-lt$',
     description: 'The iconic Levi’s 501 has been reimagined with a slimmer skinny leg that has been cropped to graze just above the ankle.',
     id: 3,
@@ -60,7 +60,7 @@ var items = [
   },
   {
     name: 'First Date Dress',
-    price: '$70.00',
+    price: 70.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/40072043_062_a?$browse-lt$',
     description: 'Long sleeve dress with a soft and comfy fabrication and an effortless trapeze shape.',
     id: 4,
@@ -72,7 +72,7 @@ var items = [
   },
   {
     name: 'Mustard Cardi',
-    price: '$88.00',
+    price: 88.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/39440201_071_a?$browse-lt$',
     description: 'Marled chunky cardigan sweater featuring front slip pockets and contrast detailing. ',
     id: 5,
@@ -85,7 +85,7 @@ var items = [
   },
   {
     name: 'Prima Ballerina Top',
-    price: '$58.00',
+    price: 58.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/31599962_049_a?$browse-lt$',
     description: 'Stretchy ribbed cold shoulder top with mock turtleneck.',
     id: 6,
@@ -96,7 +96,7 @@ var items = [
   },
   {
     name: 'Silver Linings Leather Jacket',
-    price: '$400.00',
+    price: 400.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/42146589_001_a?$browse-lt$',
     description: 'Classic moto style leather jacket featuring beautiful rose embroidery and stud details on the back and sleeve cuffs.',
     id: 7,
@@ -108,7 +108,7 @@ var items = [
   },
   {
     name: 'Bandit Denim Shorts',
-    price: '$68.00',
+    price: 68.00,
     image: 'https://img1.fpassets.com/is/image/FreePeople/41580994_010_a?$browse-lt$',
     description: 'Western-inspired denim shorts featuring a ruffled waistband and metal concho accents.',
     id: 8,
@@ -169,7 +169,7 @@ function createItems(item) {
   var itemPrice = document.createElement('p')
     itemPrice.classList.add('card-text')
     itemPrice.setAttribute('id', 'list-price')
-    itemPrice.textContent = item.price
+    itemPrice.textContent = '$' + item.price + '.00'
 
   cardBlock.appendChild(itemImage)
   cardBlock.appendChild(itemName)
@@ -209,7 +209,7 @@ function findItem (itemId) {
 
 //createImageDetails and createInfoDetails create the 2 columns in detailed view
 
-function createImageDetails (item) {
+function createImageDetails(item) {
 
   var imageColumn = document.createElement('div')
     imageColumn.classList.add('col-6')
@@ -241,7 +241,7 @@ function createImageDetails (item) {
   return imageColumn
 }
 
-function createInfoDetails (item) {
+function createInfoDetails(item) {
 
   var detailsColumn = document.createElement('div')
     detailsColumn.classList.add('col-6')
@@ -266,7 +266,7 @@ function createInfoDetails (item) {
   var price = document.createElement('p')
     price.classList.add('card-text')
     price.classList.add('item-price')
-    price.textContent = item.price
+    price.textContent = '$' + item.price + '.00'
 
   var cartButton = document.createElement('a')
     cartButton.classList.add('btn')
@@ -275,13 +275,8 @@ function createInfoDetails (item) {
     cartButton.textContent = 'Add to Cart'
 
   cartButton.addEventListener('click', function (event) {
-    addToCart()
+    addToCart(item)
   })
-
-  function addToCart (item) {
-    cart.push(item)
-    quantityCounter.textContent = 'x' + cart.length
-  }
 
   detailsColumn.appendChild(price)
   detailsColumn.appendChild(cartButton)
@@ -289,7 +284,12 @@ function createInfoDetails (item) {
   return detailsColumn
 }
 
-function renderDetails (item) {
+function addToCart(item) {
+  cart.push(item)
+  quantityCounter.textContent = 'x' + cart.length
+}
+
+function renderDetails(item) {
   var $imageColumn = createImageDetails(item)
   var $detailsColumn = createInfoDetails(item)
   detailRow.appendChild($imageColumn)
@@ -297,36 +297,17 @@ function renderDetails (item) {
 }
 
 
-
 //Cart stuff
-
-/*<div class="row" id="cart-item-row">
-  <div class="col-3">
-    <img id="item-added-picture" src="https://img1.fpassets.com/is/image/FreePeople/41935917_067_a?$browse-lt$" alt="Item Added to Cart"/>
-  </div>
-  <div class="col-7">
-    <h4>Name of Item(s)</h4>
-    <p>x Quantity</p>
-  </div>
-  <div class="col-2">
-    <p>Price of Item</p>
-  </div>
-</div>
-<div class="row" id="total-row">
-  <div class="col-12">
-    <p id="total-price">Total</p>
-    <button type="button" class="btn btn-secondary" id="checkout-button">Proceed to Checkout</button>
-  </div>
-</div>*/
 
 cartIcon.addEventListener('click', function (event) {
   itemContainer.classList.add('invisible')
   detailContainer.classList.add('invisible')
   cartContainer.classList.remove('invisible')
   renderCart()
+  renderTotal()
 })
 
-function createCart(item) {
+function createCartList(item) {
   var cartRow = document.createElement('div')
     cartRow.classList.add('row')
     cartRow.setAttribute('id', 'cart-item-row')
@@ -336,13 +317,13 @@ function createCart(item) {
 
   var cartImage = document.createElement('img')
     cartImage.setAttribute('id', 'item-added-picture')
-    //cartImage.setAttribute('src', item.image)
+    cartImage.setAttribute('src', item.image)
 
   var cartNameColumn = document.createElement('div')
     cartNameColumn.classList.add('col-7')
 
   var cartItemName = document.createElement('h3')
-    //cartItemName.textContent = item.name
+    cartItemName.textContent = item.name
 
   var cartItemQuantity = document.createElement('p')
     cartItemQuantity.textContent = 'x' + cart.length
@@ -351,7 +332,7 @@ function createCart(item) {
     cartPriceColumn.classList.add('col-2')
 
   var cartItemPrice = document.createElement('p')
-    //cartItemPrice.textContent = item.price
+    cartItemPrice.textContent = '$' + item.price + '.00'
 
   cartImageColumn.appendChild(cartImage)
   cartNameColumn.appendChild(cartItemName)
@@ -364,9 +345,55 @@ function createCart(item) {
   return cartRow
 }
 
-function renderCart () {
+/*<div class="row" id="total-row">
+  <div class="col-12">
+    <p id="total-price">Total</p>
+    <button type="button" class="btn btn-secondary" id="checkout-button">Proceed to Checkout</button>
+  </div>
+</div>*/
+
+function createTotal(item) {
+  var totalRow = document.createElement('div')
+    totalRow.classList.add('row')
+    totalRow.setAttribute('id', 'total-row')
+
+  var totalColumn = document.createElement('div')
+    totalColumn.classList.add('col-12')
+
+  var totalPrice = document.createElement('p')
+    totalPrice.setAttribute('id', 'total-price')
+    totalPrice.textContent = 'Total:' + ' ' + '$' + getTotalPrice(cart) + '.00'
+
+  var checkoutButton = document.createElement('button')
+    checkoutButton.classList.add('btn')
+    checkoutButton.classList.add('btn-secondary')
+    checkoutButton.setAttribute('type', 'button')
+    checkoutButton.setAttribute('id', 'checkout-button')
+    checkoutButton.textContent = 'Proceed to Checkout'
+
+  totalColumn.appendChild(totalPrice)
+  totalColumn.appendChild(checkoutButton)
+  totalRow.appendChild(totalColumn)
+
+  return totalRow
+}
+
+function renderCart() {
   cart.forEach(function (item) {
-    var $cartRow = createCart(item)
+    var $cartRow = createCartList(item)
     cartContainer.appendChild($cartRow)
   })
+}
+
+function renderTotal() {
+  var $totalRow = createTotal()
+  cartContainer.appendChild($totalRow)
+}
+
+function getTotalPrice(item) {
+  var total = 0
+  for (var i = 0; i < cart.length; i++) {
+    total += item[i].price
+  }
+  return total
 }
