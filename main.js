@@ -299,6 +299,21 @@ function createInfoDetails(item) {
 }
 
 function addToCart(item) {
+  var cartItem = findItem(cart, item.id)
+if (cartItem === undefined){
+  var cartItems = [
+    {
+      name: item.name,
+      price: item.price,
+      id: item.id,
+      quantity: 1
+    }
+   ]
+   return cartItems
+  }
+  else {
+    item.quantity += 1
+  }
     cart.push(item)
   quantityCounter.textContent = 'x' + cart.length
 }
