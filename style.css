@@ -8,6 +8,11 @@
   white-space: nowrap;
 }
 
+#cart-icon:hover {
+  cursor: pointer;
+  color: #3bc6d6;
+}
+
 #quantity-counter {
   font-family: "Inconsolata";
   font-size: 20px;
@@ -40,6 +45,10 @@
 
 #list-price {
   font-size: 120%;
+}
+
+#list-image:hover {
+  cursor: pointer;
 }
 
 .card.details {
@@ -80,6 +89,10 @@
   font-family: "Inconsolata";
 }
 
+#cart-button:hover {
+  cursor: pointer;
+}
+
 #bullet-points {
   font-family: "Inconsolata";
 }
@@ -101,4 +114,15 @@
   margin-left: 82%;
   font-family: "Inconsolata";
   font-weight: 700;
+}
+
+#go-back {
+  font-family: "Inconsolata";
+  text-align: center;
+  margin-top: 25%;
+}
+
+#go-back:hover {
+  color: #3bc6d6;
+  cursor: pointer;
 }

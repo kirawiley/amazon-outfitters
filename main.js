@@ -141,6 +141,7 @@ var cartIcon = document.getElementById('cart-icon')
 
 var cartContainer = document.getElementById('cart')
 
+var checkoutContainer = document.getElementById('checkout')
 
 // createItems + the .forEach create the list view
 
@@ -155,6 +156,7 @@ function createItems(item) {
 
   var itemImage = document.createElement('img')
   itemImage.classList.add('card-img-top')
+  itemImage.setAttribute('id', 'list-image')
   itemImage.setAttribute('src', item.image)
   itemImage.setAttribute('height', imageHeight)
   itemImage.setAttribute('data-id', item.id)
@@ -193,14 +195,14 @@ itemContainer.addEventListener('click', function (event){
     var itemId = event.target.getAttribute('data-id')
     itemContainer.classList.add('invisible')
     detailContainer.classList.remove('invisible')
-    var item = findItem(itemId)
+    var item = findItem(items, itemId)
     renderDetails(item)
   }
 })
 
-function findItem (itemId) {
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i]
+function findItem (list, itemId) {
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
       if(itemId === item.id.toString()){
       return item
     }
@@ -279,20 +281,32 @@ function createInfoDetails(item) {
     addToCart(item)
   })
 
+  var goBack = document.createElement('p')
+  goBack.setAttribute('id', 'go-back')
+  goBack.textContent = '<< Continue Shopping'
+
+  goBack.addEventListener('click', function (event) {
+    detailContainer.classList.add('invisible')
+    itemContainer.classList.remove('invisible')
+
+  })
+
   detailsColumn.appendChild(price)
   detailsColumn.appendChild(cartButton)
+  detailsColumn.appendChild(goBack)
 
   return detailsColumn
 }
 
 function addToCart(item) {
-  cart.push(item)
+    cart.push(item)
   quantityCounter.textContent = 'x' + cart.length
 }
 
 function renderDetails(item) {
   var $imageColumn = createImageDetails(item)
   var $detailsColumn = createInfoDetails(item)
+  detailRow.innerHTML = ''
   detailRow.appendChild($imageColumn)
   detailRow.appendChild($detailsColumn)
 }
@@ -327,7 +341,7 @@ function createCartList(item) {
   cartItemName.textContent = item.name
 
   var cartItemQuantity = document.createElement('p')
-  cartItemQuantity.textContent = 'x' + cart.length
+  cartItemQuantity.textContent = 'x' + item.quantity
 
   var cartPriceColumn = document.createElement('div')
   cartPriceColumn.classList.add('col-2')
@@ -391,3 +405,5 @@ function getTotalPrice(item) {
   }
   return total
 }
+
+//Checkout
