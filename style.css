@@ -10,6 +10,7 @@
 
 #cart-icon:hover {
   cursor: pointer;
+  color: #3bc6d6;
 }
 
 #quantity-counter {

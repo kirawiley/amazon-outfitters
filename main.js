@@ -141,6 +141,7 @@ var cartIcon = document.getElementById('cart-icon')
 
 var cartContainer = document.getElementById('cart')
 
+var checkoutContainer = document.getElementById('checkout')
 
 // createItems + the .forEach create the list view
 
@@ -194,14 +195,14 @@ itemContainer.addEventListener('click', function (event){
     var itemId = event.target.getAttribute('data-id')
     itemContainer.classList.add('invisible')
     detailContainer.classList.remove('invisible')
-    var item = findItem(itemId)
+    var item = findItem(items, itemId)
     renderDetails(item)
   }
 })
 
-function findItem (itemId) {
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i]
+function findItem (list, itemId) {
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
       if(itemId === item.id.toString()){
       return item
     }
@@ -298,14 +299,6 @@ function createInfoDetails(item) {
 }
 
 function addToCart(item) {
- /*if (cart.find === undefined) {
-  var cartItems = [
-    {
-      name: item.name,
-      price: item.price,
-      id: item.id,
-      quantity: 1
-    }*/
     cart.push(item)
   quantityCounter.textContent = 'x' + cart.length
 }
@@ -348,7 +341,7 @@ function createCartList(item) {
   cartItemName.textContent = item.name
 
   var cartItemQuantity = document.createElement('p')
-  cartItemQuantity.textContent = 'x' + cart.length
+  cartItemQuantity.textContent = 'x' + item.quantity
 
   var cartPriceColumn = document.createElement('div')
   cartPriceColumn.classList.add('col-2')
@@ -412,3 +405,5 @@ function getTotalPrice(item) {
   }
   return total
 }
+
+//Checkout
