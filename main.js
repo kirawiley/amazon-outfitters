@@ -551,6 +551,7 @@ function createCheckout(item) {
       itemContainer.classList.remove('invisible')
       cart = []
       quantityCounter.textContent = 'x' + totalCartQuantity()
+      window.location.reload(true)
     }
   })
 
