@@ -126,7 +126,7 @@ var items = [
 
 //Global Elements
 
-var imageHeight = 420
+var imageHeight = 400
 
 var itemContainer = document.getElementById('list')
 var itemRow = document.getElementById('list-row')
@@ -216,13 +216,13 @@ function createImageDetails(item) {
   var imageColumn = document.createElement('div')
   imageColumn.classList.add('col-6')
 
-
   var imageCard = document.createElement('div')
   imageCard.classList.add('card')
   imageCard.classList.add('image')
+  imageCard.setAttribute('id', 'image-card')
 
   var cardHeader = document.createElement('h3')
-  cardHeader.classList.add('card-header')
+  cardHeader.setAttribute('id', 'card-header')
   cardHeader.textContent = item.name
 
   var imageCardBlock = document.createElement('div')
@@ -246,7 +246,7 @@ function createImageDetails(item) {
 function createInfoDetails(item) {
 
   var detailsColumn = document.createElement('div')
-  detailsColumn.classList.add('col-6')
+  detailsColumn.classList.add('col-5')
   detailsColumn.setAttribute('id', 'details-column')
 
   var detailsWritten = document.createElement('p')
@@ -299,8 +299,22 @@ function createInfoDetails(item) {
 }
 
 function addToCart(item) {
-    cart.push(item)
-  quantityCounter.textContent = 'x' + cart.length
+  var cartItem = findItem(cart, item.id.toString())
+  if (cartItem === undefined){
+    var cartItems =
+      {
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        id: item.id,
+        quantity: 1
+      }
+   cart.push(cartItems)
+  }
+  else {
+    cartItem.quantity += 1
+  }
+  quantityCounter.textContent = 'x' + totalCartQuantity(cart)
 }
 
 function renderDetails(item) {
@@ -317,7 +331,9 @@ function renderDetails(item) {
 cartIcon.addEventListener('click', function (event) {
   itemContainer.classList.add('invisible')
   detailContainer.classList.add('invisible')
+  checkoutContainer.classList.add('invisible')
   cartContainer.classList.remove('invisible')
+  cartContainer.innerHTML = ''
   renderCart()
   renderTotal()
 })
@@ -347,7 +363,7 @@ function createCartList(item) {
   cartPriceColumn.classList.add('col-2')
 
   var cartItemPrice = document.createElement('p')
-  cartItemPrice.textContent = '$' + item.price + '.00'
+  cartItemPrice.textContent = '$' + (item.price * item.quantity) + '.00'
 
   cartImageColumn.appendChild(cartImage)
   cartNameColumn.appendChild(cartItemName)
@@ -379,6 +395,14 @@ function createTotal(item) {
   checkoutButton.setAttribute('id', 'checkout-button')
   checkoutButton.textContent = 'Proceed to Checkout'
 
+  checkoutButton.addEventListener('click', function (event) {
+    cartContainer.classList.add('invisible')
+    checkoutContainer.classList.remove('invisible')
+    cartContainer.innerHTML = ''
+    createCheckout()
+  })
+
+
   totalColumn.appendChild(totalPrice)
   totalColumn.appendChild(checkoutButton)
   totalRow.appendChild(totalColumn)
@@ -398,12 +422,107 @@ function renderTotal() {
   cartContainer.appendChild($totalRow)
 }
 
+function totalCartQuantity(item) {
+  var total = 0
+  for (var i = 0; i < cart.length; i++) {
+      total += item[i].quantity
+    }
+  return total
+}
+
 function getTotalPrice(item) {
   var total = 0
   for (var i = 0; i < cart.length; i++) {
-    total += item[i].price
+    total += item[i].price * item[i].quantity
   }
   return total
 }
 
 //Checkout
+
+function createCheckout(item) {
+  var checkoutForm = document.createElement('form')
+
+  var name = document.createElement('div')
+  name.classList.add('form-group')
+  name.setAttribute('id', 'name-field')
+
+  var nameLabel = document.createElement('a')
+  nameLabel.textContent = 'Name:'
+
+  var nameInput = document.createElement('input')
+  nameInput.setAttribute('id', 'name-input')
+
+  var address = document.createElement('div')
+  address.classList.add('form-group')
+
+  var addressLabel = document.createElement('a')
+  addressLabel.textContent = 'Address:'
+
+  var addressInput = document.createElement('input')
+  addressInput.setAttribute('id', 'address-input')
+
+  var location = document.createElement('div')
+  location.classList.add('form-group')
+
+  var locationLabel = document.createElement('a')
+  locationLabel.textContent = 'City/State:'
+
+  var locationInput = document.createElement('input')
+  locationInput.setAttribute('id', 'location-input')
+
+  var payment = document.createElement('div')
+  payment.classList.add('form-group')
+
+  var paymentLabel = document.createElement('a')
+  paymentLabel.textContent = 'Payment:'
+
+  var paymentInput = document.createElement('input')
+  paymentInput.setAttribute('id', 'payment-input')
+
+  var orderButton = document.createElement('button')
+  orderButton.setAttribute('id', 'order-button')
+  orderButton.setAttribute('type', 'button')
+  orderButton.classList.add('btn')
+  orderButton.classList.add('btn-secondary')
+  orderButton.textContent = 'Place Order'
+
+  orderButton.addEventListener('click', function (event) {
+    if (nameInput.value === '') {
+      alert('Please enter a name.')
+    }
+
+    else if(addressInput.value === '') {
+      alert('Please enter an address.')
+    }
+
+    else if(locationInput.value === ''){
+      alert('Please enter a city.')
+    }
+
+    else if(paymentInput.value === ''){
+      alert('Please enter a valid credit card.')
+    }
+
+    else {alert('Thank you for your order!')
+      checkoutContainer.classList.add('invisible')
+      itemContainer.classList.remove('invisible')
+      cart = []
+      quantityCounter.textContent = 'x' + totalCartQuantity()
+    }
+  })
+
+  name.appendChild(nameLabel)
+  name.appendChild(nameInput)
+  checkoutContainer.appendChild(name)
+  address.appendChild(addressLabel)
+  address.appendChild(addressInput)
+  checkoutContainer.appendChild(address)
+  location.appendChild(locationLabel)
+  location.appendChild(locationInput)
+  checkoutContainer.appendChild(location)
+  payment.appendChild(paymentLabel)
+  payment.appendChild(paymentInput)
+  checkoutContainer.appendChild(payment)
+  checkoutContainer.appendChild(orderButton)
+}
