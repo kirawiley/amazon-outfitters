@@ -161,6 +161,26 @@ function createItems(item) {
   itemImage.setAttribute('height', imageHeight)
   itemImage.setAttribute('data-id', item.id)
 
+  var favoriteButton = document.createElement('i')
+  favoriteButton.classList.add('fa')
+  favoriteButton.classList.add('fa-2x')
+  favoriteButton.classList.add('fa-heart-o')
+  favoriteButton.classList.add('invisible')
+  favoriteButton.setAttribute('id', 'favorite-button')
+  favoriteButton.setAttribute('aria-hidden', 'true')
+
+  itemImage.addEventListener('mouseover', function (event) {
+    if (event.target) {
+      favoriteButton.classList.remove('invisible')
+    }
+  })
+
+  itemImage.addEventListener('mouseout', function (event) {
+    if (event.target) {
+      favoriteButton.classList.add('invisible')
+    }
+  })
+
   var cardBlock = document.createElement('div')
   cardBlock.classList.add('card-block')
 
@@ -173,6 +193,7 @@ function createItems(item) {
   itemPrice.setAttribute('id', 'list-price')
   itemPrice.textContent = '$' + item.price + '.00'
 
+  itemImage.appendChild(favoriteButton)
   cardBlock.appendChild(itemImage)
   cardBlock.appendChild(itemName)
   cardBlock.appendChild(itemPrice)
