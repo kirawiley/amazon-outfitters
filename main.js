@@ -126,7 +126,7 @@ var items = [
 
 //Global Elements
 
-var imageHeight = 400
+var imageHeight = 420
 
 var itemContainer = document.getElementById('list')
 var itemRow = document.getElementById('list-row')
@@ -161,8 +161,43 @@ function createItems(item) {
   itemImage.setAttribute('height', imageHeight)
   itemImage.setAttribute('data-id', item.id)
 
+  var favoriteButton = document.createElement('i')
+  favoriteButton.classList.add('fa')
+  favoriteButton.classList.add('fa-2x')
+  favoriteButton.classList.add('fa-heart-o')
+  favoriteButton.classList.add('invisible')
+  favoriteButton.setAttribute('id', 'favorite-button')
+  favoriteButton.setAttribute('aria-hidden', 'true')
+
+  var favoritedItem = document.createElement('i')
+  favoritedItem.classList.add('fa')
+  favoritedItem.classList.add('fa-1x')
+  favoritedItem.classList.add('fa-heart')
+  favoritedItem.classList.add('invisible')
+  favoritedItem.setAttribute('id', 'favorited-item')
+  favoritedItem.setAttribute('aria-hidden', 'true')
+
   var cardBlock = document.createElement('div')
   cardBlock.classList.add('card-block')
+
+  cardBlock.addEventListener('mouseover', function (event) {
+    if (event.target) {
+      favoriteButton.classList.remove('invisible')
+    }
+  })
+
+  favoriteButton.addEventListener('click', function (event) {
+    if (event.target) {
+      favoriteButton.classList.add('invisible')
+      favoritedItem.classList.remove('invisible')
+    }
+  })
+
+  cardBlock.addEventListener('mouseout', function (event) {
+    if (favoritedItem.classList.contains('invisible')) {
+      favoriteButton.classList.add('invisible')
+    }
+  })
 
   var itemName = document.createElement('h5')
   itemName.classList.add('card-title')
@@ -173,6 +208,8 @@ function createItems(item) {
   itemPrice.setAttribute('id', 'list-price')
   itemPrice.textContent = '$' + item.price + '.00'
 
+  cardBlock.appendChild(favoriteButton)
+  favoriteButton.appendChild(favoritedItem)
   cardBlock.appendChild(itemImage)
   cardBlock.appendChild(itemName)
   cardBlock.appendChild(itemPrice)
@@ -399,6 +436,7 @@ function createTotal(item) {
     cartContainer.classList.add('invisible')
     checkoutContainer.classList.remove('invisible')
     cartContainer.innerHTML = ''
+    checkoutContainer.innerHTML = ''
     createCheckout()
   })
 
@@ -441,6 +479,10 @@ function getTotalPrice(item) {
 //Checkout
 
 function createCheckout(item) {
+  var totalPrice = document.createElement('p')
+  totalPrice.setAttribute('id', 'checkout-price')
+  totalPrice.textContent = 'Total:' + ' ' + '$' + getTotalPrice(cart) + '.00'
+
   var checkoutForm = document.createElement('form')
 
   var name = document.createElement('div')
@@ -512,6 +554,7 @@ function createCheckout(item) {
     }
   })
 
+  checkoutContainer.appendChild(totalPrice)
   name.appendChild(nameLabel)
   name.appendChild(nameInput)
   checkoutContainer.appendChild(name)
