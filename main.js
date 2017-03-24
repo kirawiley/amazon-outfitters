@@ -126,7 +126,7 @@ var items = [
 
 //Global Elements
 
-var imageHeight = 420
+var imageHeight = 400
 
 var itemContainer = document.getElementById('list')
 var itemRow = document.getElementById('list-row')
@@ -300,15 +300,15 @@ function createInfoDetails(item) {
 
 function addToCart(item) {
   var cartItem = findItem(cart, item.id.toString())
-if (cartItem === undefined){
-  var cartItems =
-    {
-      name: item.name,
-      image: item.image,
-      price: item.price,
-      id: item.id,
-      quantity: 1
-    }
+  if (cartItem === undefined){
+    var cartItems =
+      {
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        id: item.id,
+        quantity: 1
+      }
    cart.push(cartItems)
   }
   else {
@@ -427,8 +427,8 @@ function totalCartQuantity(item) {
   for (var i = 0; i < cart.length; i++) {
       total += item[i].quantity
     }
-    return total
-  }
+  return total
+}
 
 function getTotalPrice(item) {
   var total = 0
@@ -505,10 +505,11 @@ function createCheckout(item) {
     }
 
     else {alert('Thank you for your order!')
-    checkoutContainer.classList.add('invisible')
-    itemContainer.classList.remove('invisible')
-    cart = []
-    quantityCounter.textContent = 'x' + totalCartQuantity()}
+      checkoutContainer.classList.add('invisible')
+      itemContainer.classList.remove('invisible')
+      cart = []
+      quantityCounter.textContent = 'x' + totalCartQuantity()
+    }
   })
 
   name.appendChild(nameLabel)
