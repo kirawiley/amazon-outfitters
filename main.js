@@ -331,7 +331,9 @@ function renderDetails(item) {
 cartIcon.addEventListener('click', function (event) {
   itemContainer.classList.add('invisible')
   detailContainer.classList.add('invisible')
+  checkoutContainer.classList.add('invisible')
   cartContainer.classList.remove('invisible')
+  cartContainer.innerHTML = ''
   renderCart()
   renderTotal()
 })
@@ -396,6 +398,7 @@ function createTotal(item) {
   checkoutButton.addEventListener('click', function (event) {
     cartContainer.classList.add('invisible')
     checkoutContainer.classList.remove('invisible')
+    cartContainer.innerHTML = ''
     createCheckout()
   })
 
@@ -503,7 +506,9 @@ function createCheckout(item) {
 
     else {alert('Thank you for your order!')
     checkoutContainer.classList.add('invisible')
-    itemContainer.classList.remove('invisible')}
+    itemContainer.classList.remove('invisible')
+    cart = []
+    quantityCounter.textContent = 'x' + totalCartQuantity()}
   })
 
   name.appendChild(nameLabel)
