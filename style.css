@@ -2,15 +2,18 @@
   margin-left: 22%;
   margin-top: 2%;
 }
+.navbar {
+  margin-right: 7%;
+  background-color: none;
+}
 
 #cart-icon {
-  margin-left: 100%;
+  margin-left: 95%;
   white-space: nowrap;
 }
 
 #cart-icon:hover {
   cursor: pointer;
-  color: #3bc6d6;
 }
 
 #quantity-counter {
@@ -22,6 +25,10 @@
   margin-top: 4%;
   font-family: "Inconsolata";
   text-align: center;
+}
+
+.btn-secondary:hover {
+  cursor: pointer;
 }
 
 .card-title {
@@ -36,7 +43,7 @@
   margin-top: 3%;
 }
 
-.card-header {
+#card-header {
   text-align: center;
   font-size: 150%;
   font-family: "Inconsolata";
@@ -71,12 +78,16 @@
   display: none;
 }
 
+#image-card {
+  margin-left: 4%;
+}
+
 #details-column {
  margin-top: 30%;
 }
 
 #larger-image {
-  margin: auto;
+  margin-left: -3.5%;
 }
 
 #cart {
@@ -89,16 +100,12 @@
   font-family: "Inconsolata";
 }
 
-#cart-button:hover {
-  cursor: pointer;
-}
-
 #bullet-points {
   font-family: "Inconsolata";
 }
 
 #cart-item-row {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 #item-added-picture {
@@ -106,12 +113,12 @@
 }
 
 #total-price {
-  margin-left: 85%;
+  margin-left: 75%;
   margin-top: 20%;
 }
 
 #checkout-button {
-  margin-left: 82%;
+  margin-left: 72%;
   font-family: "Inconsolata";
   font-weight: 700;
 }
@@ -125,4 +132,37 @@
 #go-back:hover {
   color: #3bc6d6;
   cursor: pointer;
+}
+
+.form-group {
+  margin-left: 20%;
+  margin-top: 10%;
+  font-family: "Inconsolata";
+}
+
+#name-field {
+  margin-top: 20%;
+}
+
+#name-input {
+  width: 62%;
+}
+
+#address-input {
+  width: 60%;
+}
+
+#location-input {
+  width: 57%;
+}
+
+#payment-input {
+  width: 60%;
+}
+
+#order-button {
+  font-family: "Inconsolata";
+  font-weight: 700;
+  margin-left: 45%;
+  margin-top: 15%;
 }
