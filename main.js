@@ -143,7 +143,8 @@ var cartContainer = document.getElementById('cart')
 
 var checkoutContainer = document.getElementById('checkout')
 
-// createItems + the .forEach create the list view
+/* createItems - creates list view
+  favoriteButton & favoritedItem - creates "favorite" feature */
 
 function createItems(item) {
 
@@ -225,7 +226,7 @@ items.forEach(function(item) {
 })
 
 
-//findItem + the event listener find the item that has been selected
+// findItem - loops the items array
 
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
@@ -246,7 +247,9 @@ function findItem (list, itemId) {
   }
 }
 
-//createImageDetails and createInfoDetails create the 2 columns in detailed view
+/*createImageDetails & createInfoDetails - create the 2 columns in detailed view
+  renderDetails - creates DOM elements for both columns
+  addToCart - called when the "add to cart" button is clicked, adds item to cart array*/
 
 function createImageDetails(item) {
 
@@ -335,6 +338,14 @@ function createInfoDetails(item) {
   return detailsColumn
 }
 
+function renderDetails(item) {
+  var $imageColumn = createImageDetails(item)
+  var $detailsColumn = createInfoDetails(item)
+  detailRow.innerHTML = ''
+  detailRow.appendChild($imageColumn)
+  detailRow.appendChild($detailsColumn)
+}
+
 function addToCart(item) {
   var cartItem = findItem(cart, item.id.toString())
   if (cartItem === undefined){
@@ -354,16 +365,7 @@ function addToCart(item) {
   quantityCounter.textContent = 'x' + totalCartQuantity(cart)
 }
 
-function renderDetails(item) {
-  var $imageColumn = createImageDetails(item)
-  var $detailsColumn = createInfoDetails(item)
-  detailRow.innerHTML = ''
-  detailRow.appendChild($imageColumn)
-  detailRow.appendChild($detailsColumn)
-}
-
-
-//Cart stuff
+/* Cart */
 
 cartIcon.addEventListener('click', function (event) {
   itemContainer.classList.add('invisible')
