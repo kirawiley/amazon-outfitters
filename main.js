@@ -123,30 +123,24 @@ var items = [
   }
 ]
 
-
 //Global Elements
 
-var imageHeight = 420
-
+var listImageHeight = 420
 var itemContainer = document.getElementById('list')
 var itemRow = document.getElementById('list-row')
-
 var detailContainer = document.getElementById('details')
 var detailRow = document.getElementById('details-row')
-
 var cart = []
-
 var quantityCounter = document.getElementById('quantity-counter')
 var cartIcon = document.getElementById('cart-icon')
-
 var cartContainer = document.getElementById('cart')
-
 var checkoutContainer = document.getElementById('checkout')
 
-// createItems + the .forEach create the list view
+/* createItems - creates list view
+  favoriteButton & favoritedItem - creates "favorite" feature
+  findItem - loops the items array */
 
 function createItems(item) {
-
   var itemCard = document.createElement('div')
   itemCard.classList.add('card')
   itemCard.setAttribute('data-id', item.id)
@@ -158,7 +152,7 @@ function createItems(item) {
   itemImage.classList.add('card-img-top')
   itemImage.setAttribute('id', 'list-image')
   itemImage.setAttribute('src', item.image)
-  itemImage.setAttribute('height', imageHeight)
+  itemImage.setAttribute('height', listImageHeight)
   itemImage.setAttribute('data-id', item.id)
 
   var favoriteButton = document.createElement('i')
@@ -224,8 +218,14 @@ items.forEach(function(item) {
   itemRow.appendChild($itemColumn)
 })
 
-
-//findItem + the event listener find the item that has been selected
+function findItem (list, itemId) {
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+      if(itemId === item.id.toString()){
+      return item
+    }
+  }
+}
 
 itemContainer.addEventListener('click', function (event){
   if(event.target.tagName === 'IMG'){
@@ -237,19 +237,11 @@ itemContainer.addEventListener('click', function (event){
   }
 })
 
-function findItem (list, itemId) {
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i]
-      if(itemId === item.id.toString()){
-      return item
-    }
-  }
-}
-
-//createImageDetails and createInfoDetails create the 2 columns in detailed view
+/*createImageDetails & createInfoDetails - create the 2 columns in detailed view
+  renderDetails - creates DOM elements for both columns
+  addToCart - called when the "add to cart" button is clicked, adds item to cart array*/
 
 function createImageDetails(item) {
-
   var imageColumn = document.createElement('div')
   imageColumn.classList.add('col-6')
 
@@ -271,7 +263,6 @@ function createImageDetails(item) {
   itemImage.setAttribute('id', 'larger-image')
   itemImage.setAttribute('src', item.image)
 
-
   imageCardBlock.appendChild(itemImage)
   imageCard.appendChild(cardHeader)
   imageCard.appendChild(imageCardBlock)
@@ -281,7 +272,6 @@ function createImageDetails(item) {
 }
 
 function createInfoDetails(item) {
-
   var detailsColumn = document.createElement('div')
   detailsColumn.classList.add('col-5')
   detailsColumn.setAttribute('id', 'details-column')
@@ -314,13 +304,13 @@ function createInfoDetails(item) {
   cartButton.setAttribute('id', 'cart-button')
   cartButton.textContent = 'Add to Cart'
 
-  cartButton.addEventListener('click', function (event) {
-    addToCart(item)
-  })
-
   var goBack = document.createElement('p')
   goBack.setAttribute('id', 'go-back')
   goBack.textContent = '<< Continue Shopping'
+
+  cartButton.addEventListener('click', function (event) {
+    addToCart(item)
+  })
 
   goBack.addEventListener('click', function (event) {
     detailContainer.classList.add('invisible')
@@ -333,6 +323,14 @@ function createInfoDetails(item) {
   detailsColumn.appendChild(goBack)
 
   return detailsColumn
+}
+
+function renderDetails(item) {
+  var $imageColumn = createImageDetails(item)
+  var $detailsColumn = createInfoDetails(item)
+  detailRow.innerHTML = ''
+  detailRow.appendChild($imageColumn)
+  detailRow.appendChild($detailsColumn)
 }
 
 function addToCart(item) {
@@ -354,26 +352,10 @@ function addToCart(item) {
   quantityCounter.textContent = 'x' + totalCartQuantity(cart)
 }
 
-function renderDetails(item) {
-  var $imageColumn = createImageDetails(item)
-  var $detailsColumn = createInfoDetails(item)
-  detailRow.innerHTML = ''
-  detailRow.appendChild($imageColumn)
-  detailRow.appendChild($detailsColumn)
-}
-
-
-//Cart stuff
-
-cartIcon.addEventListener('click', function (event) {
-  itemContainer.classList.add('invisible')
-  detailContainer.classList.add('invisible')
-  checkoutContainer.classList.add('invisible')
-  cartContainer.classList.remove('invisible')
-  cartContainer.innerHTML = ''
-  renderCart()
-  renderTotal()
-})
+/* createCartList & renderCart - creates a new row of elements for each item added to cart
+  createTotal & renderTotal - creates the bottom row to display the cart's total price
+  totalCartQuantity - the total number of items in the user's cart
+  getTotalPrice - adds the price of each item in the user's cart multiplied by the quantity */
 
 function createCartList(item) {
   var cartRow = document.createElement('div')
@@ -432,6 +414,10 @@ function createTotal(item) {
   checkoutButton.setAttribute('id', 'checkout-button')
   checkoutButton.textContent = 'Proceed to Checkout'
 
+  totalColumn.appendChild(totalPrice)
+  totalColumn.appendChild(checkoutButton)
+  totalRow.appendChild(totalColumn)
+
   checkoutButton.addEventListener('click', function (event) {
     cartContainer.classList.add('invisible')
     checkoutContainer.classList.remove('invisible')
@@ -439,11 +425,6 @@ function createTotal(item) {
     checkoutContainer.innerHTML = ''
     createCheckout()
   })
-
-
-  totalColumn.appendChild(totalPrice)
-  totalColumn.appendChild(checkoutButton)
-  totalRow.appendChild(totalColumn)
 
   return totalRow
 }
@@ -476,7 +457,17 @@ function getTotalPrice(item) {
   return total
 }
 
-//Checkout
+cartIcon.addEventListener('click', function (event) {
+  itemContainer.classList.add('invisible')
+  detailContainer.classList.add('invisible')
+  checkoutContainer.classList.add('invisible')
+  cartContainer.classList.remove('invisible')
+  cartContainer.innerHTML = ''
+  renderCart()
+  renderTotal()
+})
+
+/* createCheckout - creates the checkout page */
 
 function createCheckout(item) {
   var totalPrice = document.createElement('p')
@@ -529,6 +520,21 @@ function createCheckout(item) {
   orderButton.classList.add('btn-secondary')
   orderButton.textContent = 'Place Order'
 
+  checkoutContainer.appendChild(totalPrice)
+  name.appendChild(nameLabel)
+  name.appendChild(nameInput)
+  checkoutContainer.appendChild(name)
+  address.appendChild(addressLabel)
+  address.appendChild(addressInput)
+  checkoutContainer.appendChild(address)
+  location.appendChild(locationLabel)
+  location.appendChild(locationInput)
+  checkoutContainer.appendChild(location)
+  payment.appendChild(paymentLabel)
+  payment.appendChild(paymentInput)
+  checkoutContainer.appendChild(payment)
+  checkoutContainer.appendChild(orderButton)
+
   orderButton.addEventListener('click', function (event) {
     if (nameInput.value === '') {
       alert('Please enter a name.')
@@ -551,21 +557,7 @@ function createCheckout(item) {
       itemContainer.classList.remove('invisible')
       cart = []
       quantityCounter.textContent = 'x' + totalCartQuantity()
+      window.location.reload(true)
     }
   })
-
-  checkoutContainer.appendChild(totalPrice)
-  name.appendChild(nameLabel)
-  name.appendChild(nameInput)
-  checkoutContainer.appendChild(name)
-  address.appendChild(addressLabel)
-  address.appendChild(addressInput)
-  checkoutContainer.appendChild(address)
-  location.appendChild(locationLabel)
-  location.appendChild(locationInput)
-  checkoutContainer.appendChild(location)
-  payment.appendChild(paymentLabel)
-  payment.appendChild(paymentInput)
-  checkoutContainer.appendChild(payment)
-  checkoutContainer.appendChild(orderButton)
 }

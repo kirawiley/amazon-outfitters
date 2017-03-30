@@ -1,10 +1,31 @@
+.invisible {
+  display: none;
+}
+
+.container {
+  font-family: "Inconsolata";
+}
+
+.btn-secondary {
+  font-family: "Inconsolata";
+  font-weight: 700;
+}
+
+.btn-secondary:hover {
+  cursor: pointer;
+}
+
+.card {
+  border-style: none
+}
+
 #logo {
   margin-left: 22%;
   margin-top: 2%;
 }
+
 .navbar {
   margin-right: 7%;
-  background-color: none;
 }
 
 #cart-icon {
@@ -23,31 +44,20 @@
 
 #list {
   margin-top: 4%;
-  font-family: "Inconsolata";
   text-align: center;
-}
-
-.btn-secondary:hover {
-  cursor: pointer;
 }
 
 .card-title {
   margin-top: 4%;
 }
 
-.card {
-  border-style: none;
-}
-
 .col-xs-4 {
   margin-top: 3%;
 }
 
-
 #card-header {
   text-align: center;
   font-size: 150%;
-  font-family: "Inconsolata";
   margin-top: 40%;
 }
 
@@ -66,7 +76,6 @@
 
 .card-text {
   font-size: 130%;
-  font-family: "Inconsolata";
 }
 
 .card-text.item-price {
@@ -75,34 +84,20 @@
   margin-left: 45%;
 }
 
-.invisible {
-  display: none;
-}
-
 #image-card {
   margin-left: 4%;
 }
 
 #details-column {
- margin-top: 30%;
+  margin-top: 30%;
 }
 
 #larger-image {
   margin-left: -3.5%;
 }
 
-#cart {
-  font-family: "Inconsolata";
-}
-
 #cart-button {
   margin-left: 40%;
-  font-weight: 700;
-  font-family: "Inconsolata";
-}
-
-#bullet-points {
-  font-family: "Inconsolata";
 }
 
 #cart-item-row {
@@ -120,12 +115,10 @@
 
 #checkout-button {
   margin-left: 72%;
-  font-family: "Inconsolata";
-  font-weight: 700;
+  margin-bottom: 15%;
 }
 
 #go-back {
-  font-family: "Inconsolata";
   text-align: center;
   margin-top: 25%;
 }
@@ -138,11 +131,9 @@
 .form-group {
   margin-left: 20%;
   margin-top: 5%;
-  font-family: "Inconsolata";
 }
 
 #checkout-price {
-  font-family: "Inconsolata";
   text-align: center;
   margin-top: 5%;
 }
@@ -168,8 +159,6 @@
 }
 
 #order-button {
-  font-family: "Inconsolata";
-  font-weight: 700;
   margin-left: 45%;
   margin-top: 10%;
 }
